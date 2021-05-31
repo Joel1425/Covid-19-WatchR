@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID-19 WatchR</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <style>
+body {
+  background-image: url('https://cutewallpaper.org/21/white-background-hd/White-Hd-Wallpaper-30+-images-on-Genchi.info.jpg');
+}
+</style>
+</head>
+
+<body>
+<!--<div class="container">-->
+<div class="container p-3 my-3 border">
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container text-white">
+            <h1 class="display-4">COVID-19 WatchR</h1>
+            <p class="lead">This Web Application provides information about the Coronavirus cases across the globe. It refreshes every 24 hours.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container p-3 my-3 border">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="row">
+                <div class="col-sm">
+                    <h1 class="col-xl-7 pb-2" th:text="${totalReportedCases}"></h1>
+                    <p class="lead">Total cases reported till date</p>
+                </div>
+                <div class="col-sm">
+                    <h1 class="col-xl-7 pb-2" th:text="${totalNewCases}"></h1>
+                    <p class="lead">New cases reported till date</p>
+                </div>
+                <div class="col-sm">
+                    <h1 class="col-xl-7 pb-2" th:text="${totalActiveCases}"></h1>
+                    <p class="lead">Active Cases as of today</p>
+                </div>
+                <div class="col-sm">
+                    <h1 class="col-xl-7 pb-2" th:text="${totalRecovered}"></h1>
+                    <p class="lead">Total recoveries till date</p>
+                </div>
+                <div class="col-sm">
+                    <h1 class="col-xl-7 pb-2" th:text="${totalDeaths}"></h1>
+                    <p class="lead">Total Deaths reported till date</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-white">
+    <table class="table table-striped">
+        <tr>
+            <th>COUNTRY</th>
+            <th>STATE</th>
+            <th>TOTAL CASES</th>
+            <th>NEW CASES</th>
+            <th>ACTIVE CASES</th>
+            <th>TOTAL RECOVERED</th>
+            <th>NEW RECOVERED</th>
+            <th>RECOVERY RATE (in %)</th>
+            <th>TOTAL DEATHS</th>
+            <th>NEW DEATHS</th>
+            <th>MORTALITY RATE(in %)</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <font color="#0000FF"><td th:text="${locationStat.country}"></font></td>
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.latestTotal}">0</td>
+            <td th:text="${locationStat.diff}">0</td>
+            <td th:text="${locationStat.activeCases}">0</td>
+            <td th:text="${locationStat.recovered}">0</td>
+            <td th:text="${locationStat.recoveredDiff}">0</td>
+            <td th:text="${locationStat.recoveryRate}">0</td>
+            <td th:text="${locationStat.deaths}"></td>
+            <td th:text="${locationStat.deathsDiff}"></td>
+            <td th:text="${locationStat.mortalityRate}"></td>
+        </tr>
+    </table>
+    </div>
+</body>
+
+</html>
